@@ -14,16 +14,21 @@ contract GitBeacon is Ownable {
     event ImplementationSwitched(address toAddress);
     
     constructor(address initialImplementation) Ownable(msg.sender) {
-        beacon = new UpgradeableBeacon(initialImplementation, msg.sender);
-        beacon.transferOwnership(address(this));
-        upgradeTo(initialImplementation);
+        beacon = new UpgradeableBeacon(initialImplementation, address(this));
+        _upgradeTo(initialImplementation);
         currentVersion = 0;
     }
     
     function upgradeTo(address implementation) public onlyOwner {
+        require(implementation != beacon.implementation(), "Same implementation");
+        _upgradeTo(implementation);
+    }
+
+    function _upgradeTo(address implementation) private {
         require(implementation != address(0), "Invalid implementation address");
         versionHistory.push(implementation);
         currentVersion = versionHistory.length - 1;
+        beacon.upgradeTo(implementation);
         emit ImplementationAdded(implementation);
     }
 

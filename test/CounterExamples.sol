@@ -10,6 +10,10 @@ contract CounterV1 {
       value = _value;
     }
 
+    function initialize(int _value) public {
+      value = _value;
+    }
+
     function get() public view returns(int){
       return value;
     }
@@ -18,6 +22,10 @@ contract CounterV1 {
 contract CounterV2 {
     int value;
     constructor(int _value) {
+      value = _value;
+    }
+
+    function initialize(int _value) public {
       value = _value;
     }
 
@@ -33,6 +41,10 @@ contract CounterV2 {
 contract CounterV3 {
     int value;
     constructor(int _value) {
+      value = _value;
+    }
+
+    function initialize(int _value) public {
       value = _value;
     }
 

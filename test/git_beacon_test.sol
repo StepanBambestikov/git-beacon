@@ -22,6 +22,7 @@ contract GitBeaconTest is Test {
       owner = address(this);
       user1 = address(0x1);
 
+      vm.startPrank(owner);
       counter1 = address(new CounterV1(value));
       counter2 = address(new CounterV2(value));
       counter3 = address(new CounterV3(value));
@@ -30,8 +31,9 @@ contract GitBeaconTest is Test {
 
       proxy = address(new BeaconProxy(
         address(beacon.beacon()),
-        ""
+        abi.encodeWithSignature("initialize(int256)", value)
       ));
+      vm.stopPrank();
     }
 
     function testInitialState() public view {
