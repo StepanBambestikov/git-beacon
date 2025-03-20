@@ -3,7 +3,7 @@ pragma solidity ^0.8.22;
 
 import "forge-std/Test.sol";
 import "test/CounterExamples.sol";
-import "src/git_beacon.sol";
+import "src/GitBeacon.sol";
 
 contract GitBeaconTest is Test {
     address public owner;

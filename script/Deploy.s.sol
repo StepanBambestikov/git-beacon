@@ -2,7 +2,7 @@
 pragma solidity ^0.8.22;
 
 import "forge-std/Script.sol";
-import "../src/git_beacon.sol";
+import "../src/GitBeacon.sol";
 import "../test/CounterExamples.sol";
 
 contract DeployGitBeacon is Script {
